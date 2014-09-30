@@ -2,20 +2,22 @@ package com.fourmob.datetimepicker.sample;
 
 import java.util.Calendar;
 
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
-import com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
-
-public class MainActivity extends FragmentActivity implements OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class MainActivity extends FragmentActivity implements com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     public static final String DATEPICKER_TAG = "datepicker";
     public static final String TIMEPICKER_TAG = "timepicker";
@@ -27,13 +29,11 @@ public class MainActivity extends FragmentActivity implements OnDateSetListener,
 
         final Calendar calendar = Calendar.getInstance();
 
-        final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), isVibrate());
-        final TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
-
         findViewById(R.id.dateButton).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(MainActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), isVibrate());
                 datePickerDialog.setVibrate(isVibrate());
                 datePickerDialog.setYearRange(1985, 2028);
                 datePickerDialog.setCloseOnSingleTapDay(isCloseOnSingleTapDay());
@@ -44,8 +44,11 @@ public class MainActivity extends FragmentActivity implements OnDateSetListener,
         findViewById(R.id.timeButton).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean is24 = ((CheckBox) findViewById(R.id.is_24)).isChecked();
+                final TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(MainActivity.this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), is24, false);
                 timePickerDialog.setVibrate(isVibrate());
                 timePickerDialog.setCloseOnSingleTapMinute(isCloseOnSingleTapMinute());
+//                timePickerDialog.set
                 timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
             }
         });
@@ -83,5 +86,30 @@ public class MainActivity extends FragmentActivity implements OnDateSetListener,
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
         Toast.makeText(MainActivity.this, "new time:" + hourOfDay + "-" + minute, Toast.LENGTH_LONG).show();
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+        case R.id.android_date:
+            android.app.DatePickerDialog dpd = new android.app.DatePickerDialog(this, new OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    
+                }
+            }, 2014, 11, 11);
+            dpd.show();
+            break;
+        case R.id.android_time:
+            android.app.TimePickerDialog tpd = new android.app.TimePickerDialog(this, new OnTimeSetListener() {
+                
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    
+                }
+            }, 1, 1, true);
+            tpd.show();
+            break;
+        }
+
     }
 }

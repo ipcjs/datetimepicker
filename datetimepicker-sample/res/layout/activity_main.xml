@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="vibrate"
-        android:layout_marginBottom="30dp"
         android:id="@+id/checkBoxVibrate"
         android:checked="true"/>
 
@@ -18,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="close on single tap day"
-        android:layout_marginBottom="30dp"
         android:id="@+id/checkBoxCloseOnSingleTapDay"
         android:checked="true"/>
 
@@ -26,14 +24,18 @@
         android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
         android:text="Select Date" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="24 hours"
+        android:id="@+id/is_24"
+        android:checked="true"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="close on single tap minute"
-        android:layout_marginBottom="30dp"
         android:id="@+id/checkBoxCloseOnSingleTapMinute"
         android:checked="true"/>
 
@@ -42,5 +44,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Time" />
+    <Button
+        android:id="@+id/android_date"
+        android:onClick="onClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Select Date" />
+    <Button
+        android:id="@+id/android_time"
+        android:onClick="onClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Select Time" />
 
 </LinearLayout>
