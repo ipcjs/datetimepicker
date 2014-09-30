@@ -2,14 +2,18 @@ package com.fourmob.datetimepicker.sample;
 
 import java.util.Calendar;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -88,26 +92,37 @@ public class MainActivity extends FragmentActivity implements com.fourmob.dateti
         Toast.makeText(MainActivity.this, "new time:" + hourOfDay + "-" + minute, Toast.LENGTH_LONG).show();
     }
 
+    @SuppressLint("NewApi")
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.android_date:
             android.app.DatePickerDialog dpd = new android.app.DatePickerDialog(this, new OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    
+
                 }
             }, 2014, 11, 11);
             dpd.show();
             break;
         case R.id.android_time:
             android.app.TimePickerDialog tpd = new android.app.TimePickerDialog(this, new OnTimeSetListener() {
-                
+
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    
+
                 }
             }, 1, 1, true);
             tpd.show();
+            break;
+        case R.id.android_number:
+            LinearLayout container = (LinearLayout) findViewById(R.id.container);
+            NumberPicker np = new NumberPicker(this);
+            String[] strs = new String[]{"第1个人","第2个人","第3个人","第4个人","第5个人","第6个人","第7个人","第8个人","第9个人"};
+            np.setMinValue(0);
+            np.setMaxValue(strs.length - 1);
+            np.setDisplayedValues(strs);
+            np.setWrapSelectorWheel(true);
+            container.addView(np, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics()));
             break;
         }
 

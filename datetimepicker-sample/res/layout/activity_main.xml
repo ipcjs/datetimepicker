@@ -1,24 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity" >
 
     <CheckBox
+        android:id="@+id/checkBoxVibrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="vibrate"
-        android:id="@+id/checkBoxVibrate"
-        android:checked="true"/>
+        android:checked="true"
+        android:text="vibrate" />
 
     <CheckBox
+        android:id="@+id/checkBoxCloseOnSingleTapDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="close on single tap day"
-        android:id="@+id/checkBoxCloseOnSingleTapDay"
-        android:checked="true"/>
+        android:checked="true"
+        android:text="close on single tap day" />
 
     <Button
         android:id="@+id/dateButton"
@@ -27,34 +28,43 @@
         android:text="Select Date" />
 
     <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="24 hours"
         android:id="@+id/is_24"
-        android:checked="true"/>
-    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="close on single tap minute"
+        android:checked="true"
+        android:text="24 hours" />
+
+    <CheckBox
         android:id="@+id/checkBoxCloseOnSingleTapMinute"
-        android:checked="true"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="close on single tap minute" />
 
     <Button
         android:id="@+id/timeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Time" />
+
     <Button
         android:id="@+id/android_date"
-        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="Android Select Date" />
+
     <Button
         android:id="@+id/android_time"
-        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="Android Select Time" />
+    <Button
+        android:id="@+id/android_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Android Select number" />
 
 </LinearLayout>
